@@ -46,7 +46,7 @@ def temperatures():
                 
         cur = conn.cursor()
      
-        query = "INSERT INTO temperatures(readTime, sensorId, temperature, humidity) VALUES(NOW(), %s, %s, %s)"
+        query = "INSERT INTO temperaturelog(readTime, sensorId, temperature, humidity) VALUES(NOW(), %s, %s, %s)"
         cur.execute(query, sensorId, temperature, humidity)
         
         print("Record inserted into temperatures table.")
@@ -67,7 +67,7 @@ def temperatures():
 
     cur = conn.cursor()
 
-    query = "SELECT * FROM temperatureLog ORDER BY readTime DESC"
+    query = "SELECT * FROM temperaturelog ORDER BY readTime DESC"
     cur.execute(query)
     
     results = cur.fetchall()
