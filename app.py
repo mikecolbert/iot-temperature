@@ -10,10 +10,10 @@ app = Flask(__name__)
 
 #dbuser = os.getenv('DBUSER')
 #dbpass = os.getenv('DBPASS')
-dbhost = os.getenv('DBHOST')
+dbhost = os.environ.get('DBHOST')
 #dbname = os.getenv('DBNAME')
 
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+#app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 #print(dbuser)
 
