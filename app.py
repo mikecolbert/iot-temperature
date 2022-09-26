@@ -1,10 +1,10 @@
 
 from flask import Flask
 from flask import request
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 
-load_dotenv()
+#load_dotenv()
 
 app = Flask(__name__)
 
