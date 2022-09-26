@@ -32,6 +32,7 @@ def temperatures():
                 password = dbpass, 
                 db = dbname, 
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
                 
         cur = conn.cursor()
