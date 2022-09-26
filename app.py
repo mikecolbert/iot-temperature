@@ -13,16 +13,6 @@ dbname = os.environ.get('DBNAME')
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
-conn = pymysql.connect(
-        host = dbhost, 
-        user = dbuser, 
-        password = dbpass, 
-        db = dbname, 
-        ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
-        cursorclass = pymysql.cursors.DictCursor)
-
-
-
 @app.route('/')
 def index():
     return "Temperature API" 
@@ -41,7 +31,7 @@ def temperatures():
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
-                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
                 cursorclass = pymysql.cursors.DictCursor)
                 
         cur = conn.cursor()
@@ -62,7 +52,8 @@ def temperatures():
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
-                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
 
     cur = conn.cursor()
