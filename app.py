@@ -2,19 +2,19 @@ import mysql.connector
 from mysql.connector import Error
 from flask import Flask
 from flask import request
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 
-#load_dotenv()
+load_dotenv()
 
 app = Flask(__name__)
 
-dbuser = os.environ.get('DBUSER')
-dbpass = os.environ.get('DBPASS')
-dbhost = os.environ.get('DBHOST')
-dbname = os.environ.get('DBNAME')
+dbuser = os.getenv('DBUSER')
+dbpass = os.getenv('DBPASS')
+dbhost = os.getenv('DBHOST')
+dbname = os.getenv('DBNAME')
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 @app.route('/', methods=['GET'])
