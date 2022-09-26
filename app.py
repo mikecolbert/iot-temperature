@@ -8,14 +8,14 @@ load_dotenv()
 
 app = Flask(__name__)
 
-dbuser = os.getenv('DBUSER')
-dbpass = os.getenv('DBPASS')
+#dbuser = os.getenv('DBUSER')
+#dbpass = os.getenv('DBPASS')
 dbhost = os.getenv('DBHOST')
-dbname = os.getenv('DBNAME')
+#dbname = os.getenv('DBNAME')
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-print(dbuser)
+#print(dbuser)
 
 @app.route('/')
 def index():
