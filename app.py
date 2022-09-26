@@ -1,23 +1,23 @@
-import mysql.connector
-from mysql.connector import Error
+#import mysql.connector
+#from mysql.connector import Error
 from flask import Flask
 from flask import request
-from dotenv import load_dotenv
-import os
+#from dotenv import load_dotenv
+#import os
 
-load_dotenv()
+#load_dotenv()
 
 app = Flask(__name__)
 
-dbuser = os.getenv('DBUSER')
-dbpass = os.getenv('DBPASS')
-dbhost = os.getenv('DBHOST')
-dbname = os.getenv('DBNAME')
+#dbuser = os.getenv('DBUSER')
+#dbpass = os.getenv('DBPASS')
+#dbhost = os.getenv('DBHOST')
+#dbname = os.getenv('DBNAME')
 
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+#app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
     return "Temperature API"
 
@@ -25,7 +25,6 @@ def index():
 @app.route('/temperature-data/sensors')
 def sensors():
     return "Sensors"
-
 
 
 if __name__ == '__main__':
