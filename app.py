@@ -41,7 +41,7 @@ def temperatures():
                 db = dbname, 
                 #ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
                 #ssl_disabled=False,
-                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                ssl={'ca': './DigiCertGlobalRootG2.crt.pem'},
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
                 #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
@@ -76,7 +76,7 @@ def temperatures():
                 #ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
                 #ssl_disabled=False,
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
-                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                ssl={'ca': './DigiCertGlobalRootG2.crt.pem'},
                 #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
 
