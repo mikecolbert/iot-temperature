@@ -33,14 +33,15 @@ def temperatures():
             sensorId = request.json['sensorNum']
             temperature = request.json['temperature']
             humidity = request.json['humidity']
-        
+
             conn = pymysql.connect(
                 host = dbhost, 
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
-                ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
-                ssl_disabled=False,
+                #ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
+                #ssl_disabled=False,
+                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
                 #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
@@ -72,9 +73,10 @@ def temperatures():
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
-                ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
-                ssl_disabled=False,
+                #ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
+                #ssl_disabled=False,
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
+                ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
                 #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
 
