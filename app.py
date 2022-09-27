@@ -21,12 +21,20 @@ def index():
 def temperatures():
     #POST request
     if request.method == 'POST':
-        form = request.form
-        sensorId = form['sensor']
-        temperature = form['temp']
-        humidity = form['humidity']
+        #form = request.form
+        #sensorId = form['sensor']
+        #temperature = form['temp']
+        #humidity = form['humidity']
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.json
+            #return json
+
+            sensorId = request.json['sensorNum']
+            temperature = request.json['temperature']
+            humidity = request.json['humidity']
         
-        conn = pymysql.connect(
+            conn = pymysql.connect(
                 host = dbhost, 
                 user = dbuser, 
                 password = dbpass, 
@@ -35,18 +43,27 @@ def temperatures():
                 ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
                 
-        cur = conn.cursor()
+            cur = conn.cursor()
      
-        query = "INSERT INTO temperaturelog(readTime, sensorId, temperature, humidity) VALUES(NOW(), %s, %s, %s)"
-        cur.execute(query, sensorId, temperature, humidity)
-        
-        print("Record inserted into temperatures table.")
-        
-        cur.close()
-        conn.close()
+            query = "INSERT INTO `temperaturelog` (`readTime`, `sensorId`, `temperature`, `humidity`) VALUES (CURRENT_TIMESTAMP(), %s, %s, %s);"
+            cur.execute(query, (sensorId, temperature, humidity))
+            conn.commit()
+
+            print(f"{cur.rowcount} record inserted into temperaturelog table")
+
+            cur.close()
+            conn.close()
             
-        return "insert complete"
-    
+            print(sensorId)
+            print(temperature)
+            print(humidity)
+
+            #return json
+            return "insert complete"
+
+        else:
+            return 'Content-Type not supported!'
+
     # GET request
     conn = pymysql.connect(
                 host = dbhost, 
