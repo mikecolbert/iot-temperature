@@ -39,15 +39,17 @@ def temperatures():
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
+                ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
+                ssl_disabled=False,
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
-                ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
+                #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
                 
             cur = conn.cursor()
      
             query = "INSERT INTO `temperaturelog` (`readTime`, `sensorId`, `temperature`, `humidity`) VALUES (CURRENT_TIMESTAMP(), %s, %s, %s);"
-            cur.execute(query, (sensorId, temperature, humidity))
-            conn.commit()
+            cur.execute(query, (sensorId, temperature, humidity)) # values need to be specified as one tuple - in parens
+            conn.commit() # the connection is not autocommited by default - commit to save changes
 
             print(f"{cur.rowcount} record inserted into temperaturelog table")
 
@@ -70,8 +72,10 @@ def temperatures():
                 user = dbuser, 
                 password = dbpass, 
                 db = dbname, 
+                ssl_ca="./BaltimoreCyberTrustRoot.crt.pem", 
+                ssl_disabled=False,
                 #ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
-                ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
+                #ssl={"fake_flag_to_enable_tls":True}, #trust all self signed certificates
                 cursorclass = pymysql.cursors.DictCursor)
 
     cur = conn.cursor()
